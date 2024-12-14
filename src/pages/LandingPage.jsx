@@ -1,12 +1,22 @@
 import { Button } from '@/components/ui/button'
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { companies } from '@/components/config/companies'
 import Autoplay from "embla-carousel-autoplay"
+import { useUser } from '@clerk/clerk-react'
 
 
 const LandingPage = () => {
+  const { user, isLoaded } = useUser();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoaded && user?.unsafeMetadata?.role) {
+      const rolePath = user.unsafeMetadata.role === "candidate" && "/jobs";
+      navigate(rolePath);
+    }
+  }, [isLoaded, user, navigate]);
   return (
     <main className='flex flex-col gap-10 sm:gap-20 py-10'>
       <section className='text-center'>
