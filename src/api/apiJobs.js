@@ -4,7 +4,7 @@ export async function getJobs(token, { location, comapany_id, searchQuery }) {
     try {
         const supabase = await supabaseClient(token);
 
-        let query = await supabase.from('jobs').select("*, company:companies(name,logo_url), saved:saved_jobs(id)");
+        let query = supabase.from('jobs').select("*, company:companies(name,logo_url), saved:saved_jobs(id)");
 
         if (location) {
             query = query.eq('location', location);
@@ -13,11 +13,12 @@ export async function getJobs(token, { location, comapany_id, searchQuery }) {
             query = query.eq('company_id', comapany_id);
         }
         if (searchQuery) {
-            // query = query.textSearch('title', searchQuery);
-            query = query.ilike('title', `%${searchQuery}%`);
+            // query = await query.textSearch('title', searchQuery);
+            query = await query.ilike('title', `%${searchQuery.trim()}%`);
         }
 
-        const { data, error } = query;
+        const { data, error } = await query;
+
         if (error) {
             console.error("Error fetching jobs:", error);
             return null;
