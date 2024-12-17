@@ -10,7 +10,7 @@ const Onboarding = () => {
 
   useEffect(() => {
     if (isLoaded && user.unsafeMetadata.role) {
-      const rolePath = user.unsafeMetadata.role === "candidate" ? "/jobs" : "/postjob";
+      const rolePath = user.unsafeMetadata.role === "candidate" ? "/jobs" : "/";
       navigate(rolePath);
     }
   }, [isLoaded, user, navigate]);
