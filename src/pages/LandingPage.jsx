@@ -17,7 +17,7 @@ const LandingPage = () => {
         navigate("/onboarding");
       }
       if (isLoaded && user?.unsafeMetadata?.role === "candidate") {
-        navigate("/jobs");  
+        navigate("/jobs");
       }
 
     }
