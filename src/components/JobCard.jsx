@@ -28,7 +28,7 @@ const JobCard = ({ job, isMyJob = false, savedInit = false, onJobSaved = () => {
     return (
         <>
             <Link to={`/jobs/${job.id}`} className='flex'>
-                <Card className='flex flex-col'>
+                <Card className='flex flex-col w-full'>
                     <CardHeader>
                         <CardTitle className='flex justify-between font-bold'>{job.title}
                             {
@@ -88,7 +88,7 @@ const JobCard = ({ job, isMyJob = false, savedInit = false, onJobSaved = () => {
                     </CardFooter>
                 </Card>
             </Link>
-            
+
 
         </>
     )

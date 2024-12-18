@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { Button } from './ui/button'
 import logo from '../assets/logo.png'
 import { SignedIn, SignedOut, SignIn, SignInButton, UserButton, useUser } from '@clerk/clerk-react'
@@ -60,6 +60,12 @@ const Header = () => {
         <SignIn
           signUpFallbackRedirectUrl='/onboarding'
           fallbackRedirectUrl='/onboarding'
+          onSignIn={() => {
+            window.location.href = "/onboarding"; // Redirect programmatically
+          }}
+          onSignUp={() => {
+            window.location.href = "/onboarding"; // Redirect programmatically
+          }}
         />
       </div>
 

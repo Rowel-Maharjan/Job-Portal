@@ -12,9 +12,11 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLoaded && user?.unsafeMetadata?.role) {
-      const rolePath = user.unsafeMetadata.role === "candidate" && "/jobs";
-      navigate(rolePath);
+    if (user) {
+      if (isLoaded && !user?.unsafeMetadata?.role) {
+        navigate("/onboarding");
+      }
+
     }
   }, [isLoaded, user, navigate]);
   return (

@@ -22,7 +22,7 @@ const Onboarding = () => {
           role,
         },
       });
-      const rolePath = role === "candidate" ? "/jobs" : "/postjob";
+      const rolePath = role === "candidate" ? "/jobs" : "/";
       navigate(rolePath);
     } catch (err) {
       console.error(err);

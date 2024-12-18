@@ -1,4 +1,5 @@
 import { getSingleJob, updateHiringStatus } from '@/api/apiJobs'
+import ApplicationCard from '@/components/ApplicationCard'
 import ApplyJob from '@/components/ApplyJob'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import useFetch from '@/hooks/useFetch'
@@ -115,6 +116,23 @@ const Job = () => {
       {/* render application  */}
       {
         job?.recruiter_id !== user?.id && <ApplyJob job={job} user={user} fetchJob={fnJob} applied={job?.applications?.find(a => a.candidate_id === user.id)} />
+      }
+
+      {
+        job?.recruiter_id === user?.id && job?.applications?.length > 0 && (
+          <div className='flex flex-col gap-2'>
+            <h2 className='text-[#1b69ca] text-2xl sm:text-3xl font-bold'>Applications</h2>
+            {
+              job?.applications.map((application)=>{
+                return <ApplicationCard 
+                  key={application.id}
+                  application={application}
+                />
+              })
+            }
+
+          </div>
+        )
       }
 
     </div>
