@@ -34,7 +34,6 @@ export async function getJobs(token, { location, comapany_id, searchQuery }) {
 export async function saveJobs(token, { alreadySaved }, saveData) {
     const supabase = await supabaseClient(token);
 
-    console.log(alreadySaved)
     if (alreadySaved) {
         const { data, error } = await supabase
             .from('saved_jobs')
@@ -57,6 +56,8 @@ export async function saveJobs(token, { alreadySaved }, saveData) {
         return data
     }
 }
+
+
 
 export async function getSingleJob(token, { job_id }) {
     try {
@@ -119,6 +120,66 @@ export async function addNewJob(token, _, jobData) {
         return data;
     } catch (error) {
         console.error("Error in addNewJob function:", error);
+        return null;
+    }
+}
+
+export async function getSavedJobs(token) {
+    try {
+        const supabase = await supabaseClient(token);
+
+        const { data, error } = await supabase
+            .from('saved_jobs')
+            .select('*, job:jobs(*, company:companies(name,logo_url))')
+
+        if (error) {
+            console.error("Error Fetching Saved Job:", error);
+            return null;
+        }
+        return data;
+    } catch (error) {
+        console.error("Error in getSavedJobs function:", error);
+        return null;
+    }
+}
+
+export async function getMyJobs(token, { recruiter_id }) {
+    try {
+        const supabase = await supabaseClient(token);
+
+        const { data, error } = await supabase
+            .from('jobs')
+            .select('*, company:companies(name,logo_url)')
+            .eq("recruiter_id", recruiter_id)
+
+        if (error) {
+            console.error("Error Fetching Job:", error);
+            return null;
+        }
+        return data;
+    } catch (error) {
+        console.error("Error in getMyjobs function:", error);
+        return null;
+    }
+}
+
+export async function deleteJob(token, { job_id }) {
+    try {
+        const supabase = await supabaseClient(token);
+
+        const { data, error } = await supabase
+            .from('jobs')
+            .delete()
+            .eq("id", job_id)
+            .select()
+
+        if (error) {
+            console.error("Error Deleting Job:", error);
+            return null;
+        }
+        return data;
+    } catch (error) {
+        console.error("Error in deleteJob function:", error);
         return null;
     }
 }
