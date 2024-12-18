@@ -9,6 +9,7 @@ const Header = () => {
   const [showSignIn, setshowSignIn] = useState(false)
   const [search, setSearch] = useSearchParams()
   const { user } = useUser()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (search.get('sign-in')) {
@@ -31,7 +32,7 @@ const Header = () => {
         </Link>
         <div className='flex gap-8'>
           <SignedOut>
-            <Button onClick={() => setshowSignIn(true)} variant="outline">Login</Button>
+            <Button onClick={() => navigate("/?sign-in=true")} variant="outline">Login</Button>
           </SignedOut>
           <SignedIn>
 

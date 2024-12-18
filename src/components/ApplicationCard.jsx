@@ -5,12 +5,9 @@ import { updateApplications } from '@/api/api.application'
 import { BarLoader } from 'react-spinners'
 import useFetch from '@/hooks/useFetch'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select'
-import MarkdownEditor from '@uiw/react-markdown-editor'
-import MDEditor from '@uiw/react-md-editor'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion'
 
 const ApplicationCard = ({ application, isCandidate = false }) => {
-    console.log(application)
 
     const handleDownload = () => {
         window.open(application?.resume, '_blank');
@@ -64,7 +61,6 @@ const ApplicationCard = ({ application, isCandidate = false }) => {
 
                 <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value={application?.id}>
-                        {console.log(application.id)}
                         <AccordionTrigger>Cover Letter</AccordionTrigger>
                         <AccordionContent>
                             <div className='whitespace-pre-wrap'>

@@ -16,6 +16,9 @@ const LandingPage = () => {
       if (isLoaded && !user?.unsafeMetadata?.role) {
         navigate("/onboarding");
       }
+      if (isLoaded && user?.unsafeMetadata?.role === "candidate") {
+        navigate("/jobs");  
+      }
 
     }
   }, [isLoaded, user, navigate]);
