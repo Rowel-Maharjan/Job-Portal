@@ -11,6 +11,7 @@ import { useParams } from 'react-router-dom'
 import { BarLoader } from 'react-spinners'
 
 const Job = () => {
+  window.scrollTo(0, 100)
 
   const { isLoaded, user } = useUser()
   const { id } = useParams()
@@ -98,11 +99,11 @@ const Job = () => {
       }
 
 
-      <h2 className='text-[#1b69ca] text-2xl sm:text-3xl font-bold'>
+      <h2 className='text-[#1b69ca] text-2xl sm:text-3xl font-bold '>
         About the Job
       </h2>
 
-      <p className='sm:text-lg'>{job?.description}</p>
+      <p className='sm:text-lg whitespace-pre-wrap'>{job?.description}</p>
 
       <h2 className=' text-[#1b69ca] text-2xl sm:text-3xl font-bold'>
         What we are looking for
@@ -123,8 +124,8 @@ const Job = () => {
           <div className='flex flex-col gap-2'>
             <h2 className='text-[#1b69ca] text-2xl sm:text-3xl font-bold'>Applications</h2>
             {
-              job?.applications.map((application)=>{
-                return <ApplicationCard 
+              job?.applications.map((application) => {
+                return <ApplicationCard
                   key={application.id}
                   application={application}
                 />

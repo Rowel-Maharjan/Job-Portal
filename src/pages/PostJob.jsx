@@ -14,6 +14,7 @@ import { Navigate, useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import MDEditor from '@uiw/react-md-editor'
 import { addNewJob } from '@/api/apiJobs'
+import AddCompanyDrawer from '@/components/AddCompanyDrawer'
 
 const schema = z.object({
   title: z.string().min(1, { message: "Title is required" }),
@@ -149,6 +150,8 @@ const PostJob = () => {
               </Select>
             )}
           />
+          {/* Add Company Drawer  */}
+          <AddCompanyDrawer fetchCompanies={fnCompanies} />
         </div>
         {
           errors.location && <p className="text-red-500">{errors.location.message}</p>
@@ -158,7 +161,7 @@ const PostJob = () => {
         }
 
 
-        {/* Add Company Drawer  */}
+
 
         <Controller
           name='requirements'
