@@ -98,58 +98,60 @@ const PostJob = () => {
         />
         {errors.description && <p className="text-red-500">{errors.description.message}</p>}
 
-        <div className='flex gap-4 items-center'>
-          <Controller
-            name='location'
-            control={control}
-            render={({ field }) => (
-              <Select
-                value={field.value}
-                onValueChange={field.onChange}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select Location" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    {
-                      allDistricts.map((district) => {
-                        return <SelectItem key={district} value={district}>{district}</SelectItem>
-                      })
+        <div className='flex flex-col gap-4 md:flex-row items-center'>
+          <div className='flex gap-4 w-full'>
+            <Controller
+              name='location'
+              control={control}
+              render={({ field }) => (
+                <Select
+                  value={field.value}
+                  onValueChange={field.onChange}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select Location" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      {
+                        allDistricts.map((district) => {
+                          return <SelectItem key={district} value={district}>{district}</SelectItem>
+                        })
 
-                    }
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            )}
-          />
+                      }
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              )}
+            />
 
-          <Controller
-            name='company_id'
-            control={control}
-            render={({ field }) => (
-              <Select
-                value={field.value}
-                onValueChange={field.onChange}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select Company">
-                    {companies?.find((company) => company.id === Number(field.value))?.name || 'Select Company'}
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    {
-                      companies?.map((company) => {
-                        return <SelectItem key={company.name} value={company.id}>{company.name}</SelectItem>
-                      })
+            <Controller
+              name='company_id'
+              control={control}
+              render={({ field }) => (
+                <Select
+                  value={field.value}
+                  onValueChange={field.onChange}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select Company">
+                      {companies?.find((company) => company.id === Number(field.value))?.name || 'Select Company'}
+                    </SelectValue>
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      {
+                        companies?.map((company) => {
+                          return <SelectItem key={company.name} value={company.id}>{company.name}</SelectItem>
+                        })
 
-                    }
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            )}
-          />
+                      }
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              )}
+            />
+          </div>
           {/* Add Company Drawer  */}
           <AddCompanyDrawer fetchCompanies={fnCompanies} />
         </div>
