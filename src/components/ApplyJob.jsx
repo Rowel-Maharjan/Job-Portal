@@ -131,7 +131,7 @@ const ApplyJob = ({ user, job, applied = false, fetchJob }) => {
                             name='education'
                             control={control}
                             render={({ field }) => (
-                                <RadioGroup className='flex gap-10' onValueChange={field.onChange} {...field}>
+                                <RadioGroup className='flex sm:gap-10 flex-col sm:flex-row' onValueChange={field.onChange} {...field}>
                                     <div className="flex items-center space-x-2">
                                         <RadioGroupItem value="Intermediate" id="intermediate" />
                                         <Label htmlFor="intermediate">Intermediate</Label>
